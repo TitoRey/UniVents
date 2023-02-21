@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UniVents</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <div class="row bg-secondary">
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <%= link_to "Logout", logout_path, class: "nav-item" %>
+          </li>
+        </ul>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <% if flash[:success].present? %>
+        <div class="col-md-2 alert alert-success"><%= flash[:success] %></div>
+      <% elsif flash[:info].present? %>
+        <div class="col-md-2 alert alert-primary"><%= flash[:info] %></div>
+      <% elsif flash[:warning].present? %>
+        <div class="col-md-2 alert alert-warning"><%= flash[:warning] %></div>
+      <% elsif flash[:error].present? %>
+        <div class="col-md-2 alert alert-danger"><%= flash[:error] %></div>
+      <% end %>
+    </div >
+    <%= yield %>
+  </body>
+</html>

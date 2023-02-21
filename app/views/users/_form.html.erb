@@ -1,0 +1,39 @@
+<br><br><br><br>
+<div class="container-fluid">
+  <div class="container col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Create Your Account</h1>
+      </div>
+    </div>
+    <div><br>
+      <%= form_for @user do |form| %>
+         <div class="row">
+          <div class="col-xs-12">
+            <%= form.text_field :email, placeholder: "Email", class: "form-control", required: true %></div>
+          </div><br>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= form.text_field :password, placeholder: "Password", class: "form-control", required: true %>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= form.text_field :first_name, placeholder: "First Name", class: "form-control", required: true %></div>
+          </div><br>
+         <div class="row">
+          <div class="col-xs-12">
+            <%= form.text_field :last_name, placeholder: "Last Name", class: "form-control", required: true %></div>
+          </div><br>
+        <div class="row">
+          <div class="col-md-10">
+            <p><%= link_to 'Have An Account? Login Here!', new_session_path %></p>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag "Login", class: "btn btn-dark" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
