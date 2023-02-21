@@ -14,10 +14,10 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to users_path, sucess: "Logged in!"
       else
-        redirect_to new_session_path, error: "Incorrect Password!"
+        redirect_to signin_path, error: "Incorrect Password!"
       end
     else 
-      redirect_to new_session_path, warning: "User does not exist!"
+      redirect_to signin_path, warning: "User does not exist!"
     end
   end
 

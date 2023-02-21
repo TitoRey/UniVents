@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_logged_in
     unless current_logged_user
-      redirect_to new_session_path, info: "Please login to the application"
+      redirect_to signup_path, info: "Please login to the application"
     end
   end 
 

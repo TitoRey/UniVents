@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     debugger
     respond_to do |format|
       if @user.save
-        format.html { redirect_to new_session_path, info: "Please Login with your newly created Account!" }
+        format.html { redirect_to signin_path, info: "Please Login with your newly created Account!" }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
