@@ -21,6 +21,8 @@
         </ul>
       </div>
     </div><br>
+
+
     <div class="row">
       <div class="col-md-1"></div>
       <% if flash[:success].present? %>
@@ -33,6 +35,12 @@
         <div class="col-md-2 alert alert-danger"><%= flash[:error] %></div>
       <% end %>
     </div >
+
+  
+
+
+
+  
     <%= yield %>
   </body>
 </html>

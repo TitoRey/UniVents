@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authorize_logged_in
 
   def new
-    if @logged_user
+    if current_logged_user
       redirect_to users_path
     end
   end

@@ -23,7 +23,6 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-    debugger
     respond_to do |format|
       if @user.save
         format.html { redirect_to signin_path, info: "Please Login with your newly created Account!" }
