@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/logout' => "sessions#destroy", as: 'logout'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  root "sessions#new"
+  root "users#index"
 end
