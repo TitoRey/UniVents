@@ -11,3 +11,4 @@ Gemfile.lock
 # These config files are expected to change so they are skipped
 # when committing (using update-index --skip-worktree)
 config/environments/development.rb
+db/development.sqlite3
