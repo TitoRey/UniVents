@@ -18777,8 +18777,14 @@ textarea.form-control-lg {
   font-family: "bootstrap-icons";
   src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"), font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
 }
+
 fieldset.form {
+  background-color: white;
   padding: 1em 1em 1em 4em;
   border: 1px solid;
   border-color: black !important;
+}
+
+.uni-body { 
+  background-color: #E4EAFF;
 }

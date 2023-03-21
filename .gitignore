@@ -1,5 +1,5 @@
 # Temporary, cached file
-/tmp
+tmp/
 
 # Local database
 db/test.sqlite3
