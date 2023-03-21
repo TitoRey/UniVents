@@ -1,1 +1,12 @@
 <h1>Home Page!</h1>
+
+<h2>Your location is:</h2>
+<iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCCcEd-SxyWVywZz9nMTJBiowQh8l1RYRQ&q=<%= current_user.address %>">
+</iframe>
