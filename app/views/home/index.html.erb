@@ -1,1 +1,56 @@
-<h1>Home Page!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h1 class="mt-5">Join Exciting Events</h1>
+      <p class="my-4">Find and sign up to a variety of events, from sports and clubs to fitness classes and study hours.</p>
+      <div class="text-center">
+        <%= link_to "Sign Up", "#", class: "btn btn-primary btn-lg btn-fixed-width" %>
+      </div>
+    </div>
+    <div class="col-md-6 text-center">
+      <h1 class="mt-5">Host Your Own Event</h1>
+      <p class="my-4">Create and host your own events, and connect with attendees who share your interests and passions.</p>
+      <div class="text-center">
+        <% if user_signed_in? %>
+            <%= link_to "Get Started", events_path, class: "btn btn-primary btn-fixed-width" %>
+        <% else %>
+            <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary btn-fixed-width" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Sports</h5>
+          <p class="card-text">Discover and attend some of the sports you are passionate about wether you are a rookie or a professional.</p>
+          <%= link_to "Learn More", "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Clubs</h5>
+          <p class="card-text">Attend and learn new skills from others alongside making new connections with other students.</p>
+          <%= link_to "Learn More", "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Study Hours</h5>
+          <p class="card-text">Find the right people to study with whether you need help with your homework or just looking for a place to study.</p>
+          <%= link_to "Learn More", "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
