@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_27_075237) do
   create_table "locations", force: :cascade do |t|
-    t.integer "location_id", null: false
     t.datetime "remember_created_at"
     t.datetime "remember_updated_at"
     t.string "street_address"

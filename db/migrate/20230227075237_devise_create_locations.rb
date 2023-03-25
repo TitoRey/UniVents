@@ -1,9 +1,9 @@
 class DeviseCreateLocations < ActiveRecord::Migration[7.0]
     def change
       create_table :locations do |t|
-        { id: false }
+        #{ id: false }
         ## Database authenticatable
-        t.integer :location_id,              null: false, default: ""
+        #t.integer :location_id,              null: false, default: ""
         
         ## Rememberable
         t.datetime :remember_created_at
