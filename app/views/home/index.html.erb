@@ -1,23 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 text-center">
-      <h1 class="mt-5">Join Exciting Events</h1>
-      <p class="my-4">Find and sign up to a variety of events, from sports and clubs to fitness classes and study hours.</p>
-      <div class="text-center">
-        <%= link_to "Sign Up", "#", class: "btn btn-primary btn-lg btn-fixed-width" %>
+    <% unless user_signed_in? %>
+      <div class="col-md-6 text-center">
+        <h1 class="mt-5">Join Exciting Events</h1>
+        <p class="my-4">Find and sign up to a variety of events, from sports and clubs to fitness classes and study hours.</p>
+        <div class="text-center">
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg btn-fixed-width" %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="col-md-3"></div>
+    <% end %>
     <div class="col-md-6 text-center">
       <h1 class="mt-5">Host Your Own Event</h1>
       <p class="my-4">Create and host your own events, and connect with attendees who share your interests and passions.</p>
       <div class="text-center">
-        <% if user_signed_in? %>
-            <%= link_to "Get Started", events_path, class: "btn btn-primary btn-fixed-width" %>
-        <% else %>
-            <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary btn-fixed-width" %>
-        <% end %>
-      </div>
-
+        <%= link_to "Get Started", new_event_path, class: "btn btn-primary btn-fixed-width" %>
+      </div>  
     </div>
   </div>
 
