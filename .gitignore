@@ -1,5 +1,15 @@
-temp/
+# Temporary, cached file
+tmp/
 
-*.log
+# Local database
+db/test.sqlite3
 
-*.pid
+# Window-specific settings
+logger.txt
+
+# These config files are expected to change so they are skipped
+# when committing (using update-index --skip-worktree)
+config/environments/development.rb
+db/development.sqlite3
+
+public/assets
