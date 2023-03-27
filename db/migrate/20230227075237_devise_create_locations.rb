@@ -6,13 +6,12 @@ class DeviseCreateLocations < ActiveRecord::Migration[7.0]
         #t.integer :location_id,              null: false, default: ""
         
         ## Rememberable
-        t.datetime :remember_created_at
-        t.datetime :remember_updated_at
         t.string :street_address
         t.integer :zipcode
         t.string :county
         t.string :city
         t.string :coordinates
+        t.timestamps null: false
 
   
         ## Trackable

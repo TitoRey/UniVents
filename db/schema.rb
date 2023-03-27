@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_27_075237) do
   create_table "locations", force: :cascade do |t|
-    t.datetime "remember_created_at"
-    t.datetime "remember_updated_at"
     t.string "street_address"
     t.integer "zipcode"
     t.string "county"
     t.string "city"
     t.string "coordinates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
