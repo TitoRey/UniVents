@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def is_admin
+  def is_admin?
     #Sorry about all of the comments, trying to figure this out. -Ena
-    
+
     #https://www.freecodecamp.org/news/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work-7a628cd42073/
     #i think i do something like this with sql?:
     #find userid where admin
