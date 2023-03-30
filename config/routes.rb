@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # What is this for again? 
-  get 'users/index'
-  
   # Lam might need to explain how this works
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   
@@ -10,4 +7,5 @@ Rails.application.routes.draw do
   
   resources :events
   resources :locations
+  resources :users, only: [ :index, :edit, :show ]
 end

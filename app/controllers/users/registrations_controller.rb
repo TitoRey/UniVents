@@ -24,6 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  # TODO: Change this so that we make the user inactive instead of destroying it
   # DELETE /resource
   # def destroy
   #   super
