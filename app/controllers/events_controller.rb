@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :convert_event_time, only: %i[ create update ]
 
   # GET /events or /events.json
   def index
@@ -65,6 +66,23 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.fetch(:event, {})
+      params.require(:event).permit(:user_id, :event_name, :event_description, :event_time)
+    end
+
+    # Convert event start date and time supplied from event form into a single DateTime object
+    def convert_event_time
+      if params[:event].blank?
+        return
+      end
+
+      event_start_date = params[:event].delete(:event_start_date)
+      event_start_time = params[:event].delete(:event_start_time)
+
+      if event_start_date.blank? || event_start_time.blank?
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      else
+        params[:event][:event_time] = event_start_date.to_datetime + Time.zone.parse(event_start_time).seconds_since_midnight.seconds
+      end
     end
 end
