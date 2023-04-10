@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="dt table table-striped table-bordered table-hover"> 
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Signed Up</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th><%= user.first_name %></th>
+          <th><%= user.last_name %></th>
+          <th><%= user.email %></th>
+          <th><%= user.created_at %></th>
+          <th><%= user.active ? 'Yes' : 'No' %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

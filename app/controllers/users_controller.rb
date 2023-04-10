@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :setup_user
+  before_action :setup_user, except: [:index]
 
   # Showing all users
   def index
+    @users = User.all
   end
 
   # We will show the account information here
