@@ -24,6 +24,14 @@ class User < ApplicationRecord
     event_users.count
   end
 
+  def upcoming_signed_up_event
+    # Grab first signed up event
+  end
+
+  def total_signed_up_events
+    # Grabbed total events that user has been signed up
+  end
+
   
 
   
