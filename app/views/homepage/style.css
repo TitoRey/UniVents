@@ -1,0 +1,99 @@
+#MainTitle {
+    font-size: 4em;
+    color: #0e4606;
+    font-family: "Georgia";
+  }
+  
+  #Listing{
+    font-size: 30px;
+  }
+  
+  body {
+      background: #eeeddd;
+      font-family: 'Times New Roman', sans-serif;
+  }
+  
+  h1 {
+    font-family: "Georgia";
+    color: #073706;
+    font-size: 40px;
+  }
+  
+  p{
+    font-size: 30px;
+  }
+  
+  a{
+    font-size: 30px;
+  }
+  
+  #Purpose{
+    color: #4e7b0a;
+    font-weight: bold;
+    font-size: 40px;
+  }
+  
+  #aboutParagraph{
+    font-size: 24px;
+  }
+  
+  h3{
+    font-size: 30px;
+  }
+  
+  .names{
+    color: #2dae24;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .mytabs {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: auto;
+      margin: 5px auto;
+      padding: 5px;
+  }
+  
+  .mytabs input[type="radio"] {
+      display: none;
+  }
+  
+  .mytabs label {
+      padding: 25px;
+      background: #00db04;
+      font-weight: bold;
+  }
+  
+  .mytabs .tab {
+      width: 100%;
+      padding: 20px;
+      background: #dbf0db;
+      order: 1;
+      display: none;
+  }
+  
+  .mytabs .tab h2 {
+      font-size: 3em;
+      color: mediumturquoise;
+      font-weight: bold;
+  }
+  
+  .mytabs input[type='radio']:checked + label + .tab {
+      display: block;
+  }
+  
+  .mytabs input[type="radio"]:checked + label {
+      background: #fff;
+  }
+  
+  .IDRow{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  albumstyle{
+    font-size: 20 px;
+  }
+  
