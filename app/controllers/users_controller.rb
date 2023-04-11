@@ -7,6 +7,14 @@ class UsersController < ApplicationController
 
   # We will show the account information here
   def show
+    #@HostEvent = ActiveRecord::Base.connection.execute("Select * From events where user=" + :user_id + " and datetime ")
+
+
+
+    #@HostEvent = Event.all.where(user_id: 1),params[:@user],params[DateTime.now.strftime("%Y/%m/%d %H:%M:%S")])
+    #@HostEventPast = :events.where("user = ? and event_time < ?",params[:@user],params[DateTime.now.strftime("%Y/%m/%d %H:%M:%S")])
+    #@ParticipatingEvent = :event_users.where("user = ? and event_time > ?",params[:@user],params[DateTime.now.strftime("%Y/%m/%d %H:%M:%S")])
+    #@ParticipatingEventPast = :event_users.where("user = ? and event_time < ?",params[:@user],params[DateTime.now.strftime("%Y/%m/%d %H:%M:%S")])
     unless current_user.is_admin? || @user == current_user
       redirect_to root_path, notice: 'Sorry, that is not your account!'
     end

@@ -1,1 +1,45 @@
-<%= @user.first_name %>
+<div class ="container-fluid">
+    <div class="row justify-content-center"    
+        <div class="col-md-6 text-center">
+            <h1 class="mt-5 text-center">Welcome to UniVents, <%= @user.first_name %> <%=@user.last_name%>!</h1>
+            <p class="my-4 text-center">Username is <%=@user.email%></p>
+            <div class="text-center">
+                <%= link_to "Edit User Info", "#", class: "btn btn-primary btn-fixed-width" %>
+            </div>  
+        </div>
+    </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Events You Are Hosting</h5>
+          <p class="card-text text-center">See the current and upcoming events you are hosting.</p>
+          #<p class="my-4 text-center"><%=@HostEvent%></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Events You Are Participating In</h5>
+          <p class="card-text text-center">See the current and upcoming events you have RSVPed to.</p>
+          #<p class="my-4 text-center">@ParticipatingEvent</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Past Events You Have Interacted With</h5>
+          <p class="card-text text-center">See the history of events you have participated in these events in the past.</p>
+          #<p class="my-4 text-center">@HostEventPast</p>
+          #<p class="my-4 text-center">@ParticipatingEventPast</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
