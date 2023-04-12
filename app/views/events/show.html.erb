@@ -1,10 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @event %>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-2">
+    <%= link_to events_path do %>
+      <i class="bi-arrow-left-circle" style="font-size: 2rem; color: black;"></i>
+    <% end %>
+    </div>
 
+    <div class="col-md-8 card">
+      <%= render @event %>
+    </div>
+  </div>
+</div>
+
+<!--
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |
   <%= link_to "Back to events", events_path %>
 
   <%= button_to "Destroy this event", @event, method: :delete %>
 </div>
+-->

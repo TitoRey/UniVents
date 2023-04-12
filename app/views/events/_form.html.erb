@@ -33,6 +33,7 @@
     <div class="col">
       <%= form.label :event_start_time %><br />
       <%= form.time_field :event_start_time, class: "form-control", required: true %>
+      <!-- <%= form.select(:event_start_time, (2010...Date.today.year).to_a, {include_blank: "Select Time"}, {class: "form-select", required: true}) %> -->
     </div>
   </div><br>
 
