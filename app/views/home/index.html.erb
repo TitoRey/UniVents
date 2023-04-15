@@ -1,9 +1,96 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5 text-center">   
+    <h1>Welcome to Our Events App!</h1>
+    <p>Sign up to discover and attend the latest events near you, or host your own events for others to attend.</p> 
+  </div>
+
+
+  <div class="row mt-5 pb-3 bg-secondary rounded">
+    <div class="col-md-6 text-center">
+      <h1 class="text-light mt-5">Upcoming Events</h1> 
+      
+      <% if @upcoming_events.any? %>
+        <div id="upcoming-events-carousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h3><%= @upcoming_events.first.event_name %></h3>
+              <p><%= @upcoming_events.first.event_description %></p>
+              <p><%= @upcoming_events.first.event_date_and_time %></p>
+            </div>
+            <% @upcoming_events.drop(1).each do |event| %>
+              <div class="carousel-item">
+                <h3><%= event.event_name %></h3>
+                <p><%= event.event_description %></p>
+                <p><%= event.event_date_and_time %></p>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#upcoming-events-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#upcoming-events-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <% else %>
+        <p class="text-light">No upcoming events.</p>
+      <% end %>    
+    </div>
+    
+    <div class="col-md-6 text-center">
+      <h1 class="text-light mt-5">Most Popular Events</h1>
+      
+      <% if @popular_events.any? %>
+      <div id="popular-events-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% @popular_events.each_with_index do |event, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <h3><%= event.event_name %></h3>
+              <p><%= event.event_description %></p>
+              <p><%= event.event_date_and_time %></p>
+              <p>number of participant: <%= event.users_signed_up %></p>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#popular-events-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#popular-events-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <% else %>
+      <p class="text-light">No popular events.</p>
+      <% end %>
+      
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <h2 class="text-center">About Our App</h2>
+    <p class="text-center">Our Events App is the best way to discover and attend events in your area. With a wide variety of events to choose from and the ability to easily host your own events, you'll never be bored again!</p>
+    <h4>Some of the features of our app include:</h4>
+    <ul>
+      <li>Search and filter events by location, date, category, and more</li>
+      <li>Create and manage your own events</li>
+      <li>RSVP to events and see who else is attending</li>
+      <li>Connect with other attendees and event hosts</li>
+    </ul>
+  </div>
+
+ 
+
+
+
+  <div class="row bg-secondary rounded">
     <% unless user_signed_in? %>
       <div class="col-md-6 text-center">
-        <h1 class="mt-5">Join Exciting Events</h1>
-        <p class="my-4">Find and sign up to a variety of events, from sports and clubs to fitness classes and study hours.</p>
+        <h1 class="mt-5 text-light">Join Exciting Events</h1>
+        <p class="my-4 text-light">Find and sign up to a variety of events, from sports and clubs to fitness classes and study hours.</p>
         <div class="text-center">
           <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg btn-fixed-width" %>
         </div>
@@ -12,9 +99,9 @@
       <div class="col-md-3"></div>
     <% end %>
     <div class="col-md-6 text-center">
-      <h1 class="mt-5">Host Your Own Event</h1>
-      <p class="my-4">Create and host your own events, and connect with attendees who share your interests and passions.</p>
-      <div class="text-center">
+      <h1 class="mt-5 text-light">Host Your Own Event</h1>
+      <p class="my-4 text-light">Create and host your own events, and connect with attendees who share your interests and passions.</p>
+      <div class="text-center mb-3">
         <%= link_to "Get Started", new_event_path, class: "btn btn-primary btn-fixed-width" %>
       </div>  
     </div>
