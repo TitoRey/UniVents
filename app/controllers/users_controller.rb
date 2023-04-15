@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
-  before_action :setup_user, except: [:index]
+  before_action :setup_user, only: [:show, :dashboard]
 
   # Showing all users
   def index
-    @users = User.all
+    respond_to do |format|
+      format.html
+      format.json { render json: UserDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # We will show the account information here
@@ -20,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def setup_user
-    @user ||= User.find(params[:id])
+    @user ||= params[:id].to_i.zero? ? current_user : User.find(params[:id])
   end
 
 end

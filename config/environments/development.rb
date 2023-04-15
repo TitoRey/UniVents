@@ -33,7 +33,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.logger = Logger.new('logger.txt')
+  # config.logger = Logger.new('logger.txt')
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 

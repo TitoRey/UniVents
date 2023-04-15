@@ -1,10 +1,10 @@
 import $ from 'jquery'
-import DataTable from "datatables.net-bs5"
+import DataTable from "datatables.net"
 
 window.DataTable = DataTable
 
 $(document).on('turbo:load', function(event) {
-  $('.dt').each(function() {
-    $(this).DataTable();
+  $('.datatable').each(function() {
+    $(this).dataTable($(this).data('dt-config'));
   })
 });

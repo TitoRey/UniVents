@@ -1,14 +1,24 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Events</h1>
-
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+<div class="container">
+  <table class="dt table table-striped table-bordered table-hover"> 
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Description</th>
+        <th>Time</th>
+        <th>Creator</th>
+        <th>Sign-Ups</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <th><%= event.event_name %></th>
+          <th><%= event.event_description %></th>
+          <th><%= event.event_time %></th>
+          <th><%= User.find_by(id: event.user_id).full_name %></th>
+          <th><%= event.all_users_signed_up.count %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New event", new_event_path %>
