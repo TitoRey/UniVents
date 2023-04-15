@@ -42,14 +42,19 @@
 
   <div class="col-md-4">
     <div class="d-grid col-8 mx-auto py-5">
-      <%= link_to "Register", new_event_path, class: "btn btn-success btn-lg btn-block" %>
+      <%= link_to "Register", "#", class: "btn btn-success btn-lg btn-block" %>
+      <span class="d-flex justify-content-center mt-3">
+        <%= button_to "#", class: "btn btn-outline-danger rounded-circle", title: "Flag this event" do %>
+          <i class="bi-flag-fill"></i>
+        <% end %>
+      </span>
     </div>
     <div class="card shadow p-3 mb-5 bg-body-tertiary">
       <div class="card-body">
         <h5 class="card-title">Host(s)</h5>
         <span>
           <% User.all.each do |user| %>
-            <%= link_to user do %>
+            <%= link_to user, style: "text-decoration:none" do %>
             <img src="https://en.meming.world/images/en/thumb/b/bc/Mike_Wazowski-Sulley_Face_Swap.jpg/300px-Mike_Wazowski-Sulley_Face_Swap.jpg" class="rounded-circle" alt=<%= user.full_name %> height="50px" width="50px">
             <% end %>
           <% end %>
@@ -60,7 +65,7 @@
         <h5 class="card-title">Attendee(s)</h5>
         <span>
           <% User.all.each do |user| %>
-            <%= link_to user do %>
+            <%= link_to user, style: "text-decoration:none" do %>
             <img src="https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1656473044.0987_Y3UVY8_n.jpg" class="rounded-circle" alt=<%= user.full_name %> height="50px" width="50px">
             <% end %>
           <% end %>
