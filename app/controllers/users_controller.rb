@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def setup_user
-    @user ||= params[:id].to_i.zero? ? current_user : User.find(params[:id])
+    @user ||= User.find(params[:id])
   end
 
 end
