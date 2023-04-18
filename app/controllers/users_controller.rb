@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :setup_user, only: [:show, :dashboard]
-  before_action :authenticate_admin, only: [:index]
+  # before_action :authenticate_admin, only: [:index]
   before_action :verify_author_or_admin, only: [:show]
 
   # Showing all users
