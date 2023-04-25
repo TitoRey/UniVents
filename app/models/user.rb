@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :event_users
   has_many :events, through: :event_users
+  validates_format_of :email, with: /\A\S+@gmu\.edu\z/, message: "must be a valid GMU email address"
+  # validates_uniqueness_of :email
 
 
   # Include default devise modules. Others available are:

@@ -1,5 +1,21 @@
 <div class="container">
-  <table class="dt table table-striped table-bordered table-hover"> 
+  <table class="datatable table table-hover table-bordered" data-dt-config="<%= {
+    saveState: true, 
+    scrollX: true, 
+    processing: true, 
+    responsive: true, 
+    autoWidth: false, 
+    serverSide: true, 
+    stateSave: true,
+    columns: [
+      { data: 'first_name'             },
+      { data: 'last_name'              },
+      { data: 'email'                  },
+      { data: 'created_at'             },
+      { data: 'active'                 },
+      { data: 'edit', orderable: false }
+    ],
+    ajax: { url: users_path } }.to_json %>">
     <thead>
       <tr>
         <th>First Name</th>
@@ -7,18 +23,10 @@
         <th>Email</th>
         <th>Signed Up</th>
         <th>Active</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <th><%= user.first_name %></th>
-          <th><%= user.last_name %></th>
-          <th><%= user.email %></th>
-          <th><%= user.created_at %></th>
-          <th><%= user.active ? 'Yes' : 'No' %></th>
-        </tr>
-      <% end %>
     </tbody>
   </table>
 </div>

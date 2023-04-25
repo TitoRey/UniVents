@@ -21,7 +21,7 @@
 
         <% if user_signed_in? %>
           <li class="nav-item mx-5">
-            <%= link_to 'Account Information', user_path(current_user), class: 'nav-link' %>
+            <%= link_to 'Dashboard', user_path(current_user), class: 'nav-link' %>
           </li><br>
           <% if current_user.admin %>
             <li class="nav-item mx-5">

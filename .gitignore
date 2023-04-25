@@ -1,9 +1,6 @@
 # Temporary, cached file
 tmp/
 
-# Local database
-db/test.sqlite3
-
 # Window-specific settings
 logger.txt
 
@@ -12,3 +9,22 @@ logger.txt
 config/environments/development.rb
 config/database.yml
 public/assets
+
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/node_modules/*
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+/config/master.key
