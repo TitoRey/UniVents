@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
   enable_extension "plpgsql"
 
   create_table "event_users", force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_users_on_event_id"
