@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :convert_event_time, only: %i[ create update ]
+  before_action :verify_author_or_admin, only: [:edit, :update, :destroy]
 
   # GET /events or /events.json
   def index
@@ -66,6 +67,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def verify_author_or_admin
+      redirect_to root_path, alert: "Sorry, you do not have access to this Event's settings!" unless (current_user.is_admin? || @event.user_id == current_user.id)
     end
 
     # Only allow a list of trusted parameters through.
