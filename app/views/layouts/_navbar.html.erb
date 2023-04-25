@@ -23,6 +23,9 @@
           <li class="nav-item mx-5">
             <%= link_to 'Dashboard', user_path(current_user), class: 'nav-link' %>
           </li><br>
+          <li class="nav-item mx-5">
+            <%= link_to 'Events', events_path, class: 'nav-link' %>
+          </li><br>
           <% if current_user.admin %>
             <li class="nav-item mx-5">
               <%= link_to 'Users', users_path, class: 'nav-link' %>

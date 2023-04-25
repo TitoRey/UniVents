@@ -1,24 +1,76 @@
-<div class="container">
-  <table class="dt table table-striped table-bordered table-hover"> 
-    <thead>
-      <tr>
-        <th>Event Name</th>
-        <th>Description</th>
-        <th>Time</th>
-        <th>Creator</th>
-        <th>Sign-Ups</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |event| %>
+<% if params[:flagged].present? && current_user.is_admin? %>
+  <div class="container">
+    <table class="dt table table-striped table-bordered table-hover"> 
+      <thead>
         <tr>
-          <th><%= event.event_name %></th>
-          <th><%= event.event_description %></th>
-          <th><%= event.event_time %></th>
-          <th><%= User.find_by(id: event.user_id).full_name %></th>
-          <th><%= event.all_users_signed_up.count %></th>
+          <th>Event Name</th>
+          <th>Description</th>
+          <th>Time</th>
+          <th>Creator</th>
+          <th>Sign-Ups</th>
         </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <th><%= event.event_name %></th>
+            <th><%= event.event_description %></th>
+            <th><%= event.event_time %></th>
+            <th><%= User.find_by(id: event.user_id).full_name %></th>
+            <th><%= event.all_users_signed_up.count %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row event-header">
+      <div class="col-md-4"></div>
+      <div class="col-md-2">
+        From: <%= date_field_tag :event_start_date, class: 'form-control', min: Date.today.beginning_of_week %>
+      </div>
+      <div class="col-md-2">
+        To: <%= date_field_tag :event_end_date, class: 'form-control', min: Date.today.end_of_week %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'New Event', new_event_path, class: 'btn btn-primary' %>
+      </div>
+      <% if current_user.is_admin? %>
+        <div class="col-md-2">
+          <%= link_to "Flagged Events", events_path(flagged: true), class: 'btn btn-secondary' %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-</div>
+    </div><br>
+
+    <div class="flex-container">
+      <% @events.each do |event| %>
+        <div class="flex-box">
+          <br>
+          <div class="row">
+            <h5><%= event.event_name.truncate(50) %></h5>
+          </div>
+          <br><br>
+          <%= event.event_description.truncate(200) %>
+          <br><br><br><br><br><br>
+          <%= link_to 'Sign Up!', event_path(event), class: 'btn btn-primary' %>
+          
+          <div style="margin-top: 10%;">
+            <%= event.event_time.strftime("%B %d %Y (%I:%M %p)") %>
+          </div>
+          
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+

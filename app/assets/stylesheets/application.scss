@@ -7,10 +7,33 @@ fieldset {
   border-color: black !important;
 }
 
-.uni-body { 
+.uni-body {
   background-color: #E4EAFF;
 }
 
-fieldset.inner { 
+fieldset.inner {
   background-color: #E4EAFF;
+}
+
+.events-header {
+  margin-top: 10%;
+}
+
+.flex-container {
+  margin-left: 5%;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-box {
+  width: 250px;
+  height: 350px;
+  background: gray;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  margin: 20px;
 }
