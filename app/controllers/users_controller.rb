@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :setup_user, only: [:show, :dashboard]
-  # before_action :authenticate_admin, only: [:index]
+  before_action :setup_user, only: [:show, :dashboard, :edit, :update]
+  before_action :authenticate_admin, only: [:index]
   before_action :verify_author_or_admin, only: [:show]
 
   # Showing all users
@@ -15,6 +15,20 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to root_path, notice: 'Account has been successfully updated!'}
+      else
+        format.html { render action: 'edit'}
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def setup_user
@@ -23,6 +37,10 @@ class UsersController < ApplicationController
 
   def verify_author_or_admin
     redirect_to root_path, alert: 'Sorry, that is not your account!' unless (current_user.is_admin? || @user.id == current_user.id)
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
   end
 
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   resources :events
   resources :locations
-  resources :users, only: [ :index, :show ]
+  resources :users
 
   get 'dashboard' => 'users#dashboard', :as => 'dashboard'
 end

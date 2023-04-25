@@ -2,11 +2,13 @@
   <table class="datatable table table-hover table-bordered" data-dt-config="<%= {
     saveState: true, 
     scrollX: true, 
+    searching: false,
     processing: true, 
     responsive: true, 
     autoWidth: false, 
     serverSide: true, 
     stateSave: true,
+    dom: 'lrt',
     columns: [
       { data: 'first_name'             },
       { data: 'last_name'              },
