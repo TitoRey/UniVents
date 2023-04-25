@@ -4,6 +4,8 @@ class Event < ApplicationRecord
   has_many :event_users
   has_many :users, through: :event_users
 
+  after_create :owner_email_confirmation
+
 
 
   def users_signed_up
@@ -20,6 +22,12 @@ class Event < ApplicationRecord
 
   def all_users_signed_up
     users.where(active: true)
+  end
+
+  private
+  
+  def owner_email_confirmation
+    MainMailer.event_creation_confirmation(owner: user, event: self).deliver_now
   end
 
 
