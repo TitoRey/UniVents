@@ -1,13 +1,12 @@
 <div class="container">
-  <table class="datatable table table-hover table-bordered" data-dt-config="<%= {
-    saveState: true, 
+  <table class="datatable table table-hover table-bordered cell-border compact order-column" data-dt-config="<%= {
     scrollX: true, 
     searching: false,
     processing: true, 
     responsive: true, 
     autoWidth: false, 
     serverSide: true, 
-    stateSave: true,
+    paging: false,
     dom: 'lrt',
     columns: [
       { data: 'first_name'             },

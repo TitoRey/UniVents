@@ -36,4 +36,17 @@ fieldset.inner {
   text-align: center;
   border-radius: 20px;
   margin: 20px;
+  text-decoration: none !important;
+}
+
+.flex-box:hover {
+  background-color: green;
+}
+
+.table {
+  background-color: white;
+}
+
+a {
+  text-decoration: none !important;
 }

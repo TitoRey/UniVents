@@ -29,6 +29,9 @@ gem 'devise'
 # Allows for datatables to use ajax calls
 gem 'ajax-datatables-rails', '1.1.0'
 
+gem 'jquery-datatables-rails'
+
+
 gem 'importmap-rails'
 
 # Use Redis adapter to run Action Cable in production

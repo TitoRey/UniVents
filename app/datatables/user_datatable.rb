@@ -27,7 +27,7 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
         first_name:   record.first_name,
         last_name:    record.last_name,
         email:        record.email, 
-        created_at:   record.created_at,
+        created_at:   record.created_at.strftime("%B %d, %Y (%I:%M %p)"),
         active:       record.active ? 'Yes' : 'No',
         edit:         edit(record),
         DT_RowId:     record.id

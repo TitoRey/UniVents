@@ -7,8 +7,12 @@ class EventsController < ApplicationController
   def index
     if params[:flagged].present?
       @events = Event.where(flagged: true)
-    else
-      @events = Event.where(flagged: false)
+    elsif params[:from].present? && params[:to].present?
+      @events = Event.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
+    elsif params[:from].present?
+      @events = Event.where("event_time >= :foo", foo: Date.parse(params[:from]).in_time_zone)
+    elsif params[:to].present?
+      @events = Event.where("event_time < :foo", foo: Date.parse(params[:to]).in_time_zone)
     end
   end
 
