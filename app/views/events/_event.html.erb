@@ -43,32 +43,29 @@
   <div class="col-md-4">
     <div class="d-grid col-8 mx-auto py-5">
       <%= link_to "Register", "#", class: "btn btn-success btn-lg btn-block" %>
-      <span class="d-flex justify-content-center mt-3">
-        <%= button_to "#", class: "btn btn-outline-danger rounded-circle", title: "Flag this event" do %>
-          <i class="bi-flag-fill"></i>
-        <% end %>
-      </span>
+      <br>
+      <% if @event.flagged %>
+        <%= link_to "Unflag Event", flag_path(@event.id, flag: false), data: { "turbo-method": :patch }, class: "btn btn-danger btn-lg btn-block" %>
+      <% else %>
+        <%= link_to "Flag Event", flag_path(@event.id, flag: true), data: { "turbo-method": :patch }, class: "btn btn-danger btn-lg btn-block" %>
+      <% end %>
     </div>
     <div class="card shadow p-3 mb-5 bg-body-tertiary">
       <div class="card-body">
-        <h5 class="card-title">Host(s)</h5>
+        <h5 class="card-title">Host:</h5>
         <span>
-          <% User.all.each do |user| %>
-            <%= link_to user, style: "text-decoration:none" do %>
-            <img src="https://en.meming.world/images/en/thumb/b/bc/Mike_Wazowski-Sulley_Face_Swap.jpg/300px-Mike_Wazowski-Sulley_Face_Swap.jpg" class="rounded-circle" alt=<%= user.full_name %> height="50px" width="50px">
-            <% end %>
-          <% end %>
+          <%= @event.user.full_name %>
         </span>
       </div>
       <hr>
       <div class="card-body">
-        <h5 class="card-title">Attendee(s)</h5>
+        <h5 class="card-title">Attendee(s):</h5>
         <span>
-          <% User.all.each do |user| %>
-            <%= link_to user, style: "text-decoration:none" do %>
-            <img src="https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1656473044.0987_Y3UVY8_n.jpg" class="rounded-circle" alt=<%= user.full_name %> height="50px" width="50px">
+          <ul>
+            <% @event.users.order(:created_at).each do |attendee| %>
+              <li><%= attendee.full_name %></li>
             <% end %>
-          <% end %>
+          <ul>
         </span>
       </div>
     </div>

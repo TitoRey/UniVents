@@ -1,18 +1,20 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ show edit update destroy flag ]
   before_action :convert_event_time, only: %i[ create update ]
   before_action :verify_author_or_admin, only: [:edit, :update, :destroy]
+  before_action :block_if_flagged, only: [:show]
 
   # GET /events or /events.json
   def index
+    @events = Event.where(flagged: false).order("event_time asc")
     if params[:flagged].present?
       @events = Event.where(flagged: true)
     elsif params[:from].present? && params[:to].present?
-      @events = Event.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
+      @events.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
     elsif params[:from].present?
-      @events = Event.where("event_time >= :foo", foo: Date.parse(params[:from]).in_time_zone)
+      @events.where("event_time >= :foo", foo: Date.parse(params[:from]).in_time_zone)
     elsif params[:to].present?
-      @events = Event.where("event_time < :foo", foo: Date.parse(params[:to]).in_time_zone)
+      @events.where("event_time < :foo", foo: Date.parse(params[:to]).in_time_zone)
     end
   end
 
@@ -67,7 +69,24 @@ class EventsController < ApplicationController
     end
   end
 
+  def flag
+    boolean = params[:flag]
+    @event.flag(boolean)
+    respond_to do |format|
+      if (@event.flagged)
+        format.html { redirect_to events_url, alert: "Event has been flagged and is pending review from admins." }
+      else
+        format.html { redirect_to event_path(@event), notice: 'Event has been unflagged and is now visible to users.' }
+      end
+    end
+  end
+
   private
+
+    def block_if_flagged
+      redirect_to events_url, notice: 'Event is currently under review as it was deemed suspicious' unless (current_user.is_admin? || !@event.flagged)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])

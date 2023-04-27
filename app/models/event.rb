@@ -24,6 +24,10 @@ class Event < ApplicationRecord
     users.where(active: true)
   end
 
+  def flag(flag)
+    update(flagged: flag)
+  end
+
   private
   
   def owner_email_confirmation
