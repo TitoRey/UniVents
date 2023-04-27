@@ -16,7 +16,11 @@
         <div class="mt-3">
           <span>
             <i class="bi-geo-alt-fill me-2"></i>
-            Your mom's house
+            <% if @event.location.present? %>
+              <%= @event.location.full_address %>
+            <% else %>
+              Virtual
+            <% end %>
           </span>
         </div>
       </li>
@@ -42,7 +46,13 @@
 
   <div class="col-md-4">
     <div class="d-grid col-8 mx-auto py-5">
-      <%= link_to "Register", "#", class: "btn btn-success btn-lg btn-block" %>
+      <% if current_user.id != @event.user_id %>
+        <%= link_to "Register", "#", class: "btn btn-success btn-lg btn-block" %>
+      <% else %>
+        <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-success btn-lg btn-block" %>
+        <br>
+        <%= link_to "Delete Event", event_path(@event.id), data: { "turbo-method": :delete }, class: "btn btn-danger btn-lg btn-block" %>
+      <% end %>
       <br>
       <% if @event.flagged %>
         <%= link_to "Unflag Event", flag_path(@event.id, flag: false), data: { "turbo-method": :patch }, class: "btn btn-danger btn-lg btn-block" %>

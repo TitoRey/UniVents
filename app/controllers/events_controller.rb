@@ -8,7 +8,10 @@ class EventsController < ApplicationController
   def index
     @events = Event.where(flagged: false).order("event_time asc")
     if params[:flagged].present?
-      @events = Event.where(flagged: true)
+      respond_to do |format|
+        format.html
+        format.json { render json: EventDatatable.new(params, view_context: view_context) }
+      end
     elsif params[:from].present? && params[:to].present?
       @events.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
     elsif params[:from].present?

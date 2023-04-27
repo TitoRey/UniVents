@@ -9,8 +9,6 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
 
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       first_name:   { source: 'User.first_name', cond: :like, orderable: true },
       last_name:    { source: 'User.last_name', cond: :like, orderable: true },
