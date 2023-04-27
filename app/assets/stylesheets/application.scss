@@ -51,3 +51,27 @@ fieldset.inner {
 a {
   text-decoration: none !important;
 }
+
+.dashboard {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.account-info {
+  background-color: pink;
+  height: 100%;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-size: 22px;
+}
+
+.user-host-info {
+  height: 500px;
+  background-color: aqua;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
