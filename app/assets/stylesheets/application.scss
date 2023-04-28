@@ -75,3 +75,17 @@ a {
   border-radius: 20px;
   text-align: center;
 }
+
+.alert-center {
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  width: fit-content;
+  text-align: center;
+  z-index: 1;
+}
+
+html {
+  overflow-y: overlay;
+}
