@@ -47,11 +47,35 @@
   <div class="col-md-4">
     <div class="d-grid col-8 mx-auto py-5">
       <% if current_user.id != @event.user_id %>
-        <%= link_to "Register", "#", class: "btn btn-success btn-lg btn-block" %>
+        <!-- Button -->
+        <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#eventSignUp">
+          Register
+        </button>
+
+        <!-- Confirmation Prompt -->
+        <div class="modal fade" id="eventSignUp" tabindex="-1" role="dialog" aria-labelledby="eventSignUpConfirmation" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="eventSignUpConfirmation">Event Registration</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Would you like to register for this event?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Let me rethink</button>
+                <%= link_to "Yes", events_path, class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% else %>
-        <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-success btn-lg btn-block" %>
+        <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-success btn-lg" %>
         <br>
-        <%= link_to "Delete Event", event_path(@event.id), data: { "turbo-method": :delete }, class: "btn btn-danger btn-lg btn-block" %>
+        <%= link_to "Delete Event", event_path(@event.id), data: { "turbo-method": :delete }, class: "btn btn-danger btn-lg" %>
       <% end %>
       <br>
       <% if @event.flagged %>
