@@ -1,0 +1,33 @@
+<div class="container">
+  <table class="datatable table table-hover table-bordered cell-border compact order-column" data-dt-config="<%= {
+    scrollX: true, 
+    searching: false,
+    processing: true, 
+    responsive: true, 
+    autoWidth: false, 
+    serverSide: true, 
+    paging: false,
+    dom: 'lrt',
+    columns: [
+      { data: 'first_name'             },
+      { data: 'last_name'              },
+      { data: 'email'                  },
+      { data: 'created_at'             },
+      { data: 'active'                 },
+      { data: 'edit', orderable: false }
+    ],
+    ajax: { url: users_path } }.to_json %>">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Signed Up</th>
+        <th>Active</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

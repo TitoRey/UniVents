@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :event_users
-  has_many :events, through: :event_users
+  has_many :events, through: :event_users, dependent: :destroy
+  validates_format_of :email, with: /\A\S+@gmu\.edu\z/, message: "must be a valid GMU email address"
+  # validates_uniqueness_of :email
 
 
   # Include default devise modules. Others available are:
@@ -22,6 +24,14 @@ class User < ApplicationRecord
 
   def events_signed_up_for
     event_users.count
+  end
+
+  def upcoming_signed_up_event
+    # Grab first signed up event
+  end
+
+  def total_signed_up_events
+    # Grabbed total events that user has been signed up
   end
 
   

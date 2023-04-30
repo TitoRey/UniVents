@@ -1,1 +1,35 @@
-<%= @user.first_name %>
+
+<div class="container dashboard">
+  <div class="row">
+    <div class="account-info col-md-2">
+      <br>
+      <%= @user.first_name %>
+      <br><br>
+      <%= @user.last_name %>
+      <br><br>
+      <%= @user.email %>
+      <br><br>
+      <% if @user.is_admin? %>
+        Admin
+      <% else %>
+        Default User
+      <% end %>
+      <br><br>
+      <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-primary' %>
+    </div>
+    <div class="user-host-info col-md-4">
+      <h2>Events Hosted</h2>
+    </div>
+    <div class="user-host-info col-md-4">
+      <h2>Events Sign-Up</h2>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</div>

@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    MainMailer.new_account_creation(user: User.last).deliver_now
   end
 
   # GET /resource/edit

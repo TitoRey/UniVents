@@ -11,7 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit %>
+  <%= form.hidden_field :user_id, value: current_user.id  %>
+
+  <div class="mb-3">
+    <%= form.label :event_name %><br />
+    <%= form.text_field :event_name, class: "form-control", autofocus: true, required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :event_description %><br />
+    <%= form.text_area :event_description, class: "form-control", rows: 3, required: true %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= form.label :event_start_date %><br />
+      <%= form.date_field :event_start_date, class: "form-control", min: Date.current, required: true %>
+    </div>
+    <div class="col">
+      <%= form.label :event_start_time %><br />
+      <%= form.time_field :event_start_time, class: "form-control", required: true %>
+      <!-- <%= form.select(:event_start_time, (2010...Date.today.year).to_a, {include_blank: "Select Time"}, {class: "form-select", required: true}) %> -->
+    </div>
+  </div><br>
+
+  <div class="mb-3">
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

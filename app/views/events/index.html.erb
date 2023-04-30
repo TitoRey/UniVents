@@ -1,14 +1,91 @@
-<p style="color: green"><%= notice %></p>
+<% if params[:flagged].present? && current_user.is_admin? %>
+  <div class="container">
+    <table class="datatable table table-hover table-bordered cell-border compact order-column" data-dt-config="<%= {
+    scrollX: true, 
+    searching: false,
+    processing: true, 
+    responsive: true, 
+    autoWidth: false, 
+    serverSide: true, 
+    paging: false,
+    dom: 'lrt',
+    columns: [
+      { data: 'event_name'             },
+      { data: 'event_description'      },
+      { data: 'event_time'             },
+      { data: 'creator'                },
+      { data: 'sign_ups'               },
+      { data: 'show', orderable: false }
+    ],
+    ajax: { url: events_path(flagged: true) } }.to_json %>">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Description</th>
+          <th>Event Time</th>
+          <th>Creator</th>
+          <th>Sign-Ups</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="container">
+    <%= form_tag(events_url, method: :get) do %>
+      <div class="row event-header">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          From: <%= date_field_tag :from, class: 'form-control', min: Date.today.beginning_of_week %>
+        </div>
+        <div class="col-md-2">
+          To: <%= date_field_tag :to, class: 'form-control', min: Date.today.end_of_week %>
+        </div>
+        <div class="col-md-1">
+          <%= submit_tag 'Search', class: 'btn btn-primary' %>
+        </div>
+        <div class="col-md-1">
+          <%= link_to 'Create', new_event_path, class: 'btn btn-primary' %>
+        </div>
+        <% if current_user.is_admin? %>
+          <div class="col-md-2">
+            <%= link_to "Flagged Events", events_path(flagged: true), class: 'btn btn-secondary' %>
+          </div>
+        <% end %>
+      </div><br>
+    <% end %>
 
-<h1>Events</h1>
+    <div class="flex-container">
+      <% if @events.present? %>
+        <% @events.each do |event| %>
+          <%= link_to event_path(event) do %>
+            <div class="flex-box">
+              <br>
+              <%= event.event_time.strftime("%B %d %Y (%I:%M %p)") %>
+              <br><br>
+              Open Slots: TBA
+              <br><br>
 
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
-</div>
+              <h5><%= event.event_name.truncate(25) %></h5>
+              <br><br>
+              <%= event.event_description.truncate(200) %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to "New event", new_event_path %>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-5 form-group">
+      <% if @user.errors.present? %>
+        <div class="col-md-3 alert alert-sucess alert-dismissable">
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %>WHAT WHAT</li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <fieldset class="form">
+        <h2 class="form">Updating Information</h2>
+        <%= form_for(@user) do |f| %>
+          <div class="field">
+            <%= f.label :first_name %><br/>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "given_name", required: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :last_name %><br />
+            <%= f.text_field :last_name, autocomplete: "family_name", required: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autocomplete: "email", required: true %>
+          </div><br>
+
+          <% if current_user.is_admin? %>
+            <div class="field">
+              Admin <%= f.check_box :admin %>
+            </div><br>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-primary" %>
+          </div><br>
+
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>

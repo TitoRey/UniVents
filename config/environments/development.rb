@@ -33,7 +33,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.logger = Logger.new('logger.txt')
+  # config.logger = Logger.new('logger.txt')
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
@@ -42,6 +42,17 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { 
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => 'google.com',
+    :authentication => :plain,
+    :user_name => 'univentsmailer@gmail.com',
+    :password => 'vbmlvzigncmpcdln'
+  }
 
   config.action_mailer.perform_caching = false
 

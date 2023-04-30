@@ -1,9 +1,14 @@
-<h1>New event</h1>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-3">
+    <%= link_to events_path do %>
+      <i class="bi-arrow-left-circle" style="font-size: 2rem; color: black;"></i>
+    <% end %>
+    </div>
 
-<%= render "form", event: @event %>
-
-<br>
-
-<div>
-  <%= link_to "Back to events", events_path %>
+    <div class="col-md-6 form-group">
+      <h1 class="form">Create New Event</h1><br>
+      <%= render "form", event: @event %>
+    </div>
+  </div>
 </div>

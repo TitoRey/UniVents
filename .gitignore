@@ -1,15 +1,30 @@
 # Temporary, cached file
 tmp/
 
-# Local database
-db/test.sqlite3
-
 # Window-specific settings
 logger.txt
 
 # These config files are expected to change so they are skipped
 # when committing (using update-index --skip-worktree)
 config/environments/development.rb
-db/development.sqlite3
-
+config/database.yml
 public/assets
+
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/node_modules/*
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+/config/master.key

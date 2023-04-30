@@ -1,0 +1,91 @@
+@import 'bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+fieldset {
+  background-color: white;
+  padding: 1em 1em 1em 4em;
+  border: 1px solid;
+  border-color: black !important;
+}
+
+.uni-body {
+  background-color: #E4EAFF;
+}
+
+fieldset.inner {
+  background-color: #E4EAFF;
+}
+
+.events-header {
+  margin-top: 10%;
+}
+
+.flex-container {
+  margin-left: 5%;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-box {
+  width: 250px;
+  height: 350px;
+  background: gray;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  margin: 20px;
+  text-decoration: none !important;
+}
+
+.flex-box:hover {
+  background-color: green;
+}
+
+.table {
+  background-color: white;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.dashboard {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.account-info {
+  background-color: pink;
+  height: 100%;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-size: 22px;
+}
+
+.user-host-info {
+  height: 500px;
+  background-color: aqua;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.alert-center {
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  width: fit-content;
+  text-align: center;
+  z-index: 1;
+}
+
+html {
+  overflow-y: overlay;
+}
