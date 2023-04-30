@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :event_users
+  has_many :event_users, dependent: :destroy
   has_many :events, through: :event_users, dependent: :destroy
   validates_format_of :email, with: /\A\S+@gmu\.edu\z/, message: "must be a valid GMU email address"
   # validates_uniqueness_of :email
@@ -34,6 +34,13 @@ class User < ApplicationRecord
     # Grabbed total events that user has been signed up
   end
 
+  def currently_registered_to(event:)
+    EventUser.find_by(user_id: id, event_id: event.id).present?
+  end
+
+  def grab_registration_for_event(event:)
+    EventUser.find_by(user_id: id, event_id: event.id).try(:id)
+  end
   
 
   

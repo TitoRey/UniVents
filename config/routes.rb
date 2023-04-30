@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :events
   resources :locations
   resources :users
+  resources :event_user, only: [ :create, :destroy ] 
 
   patch '/events/:id/flag' => 'events#flag', as: 'flag'
   get 'dashboard' => 'users#dashboard', :as => 'dashboard'
