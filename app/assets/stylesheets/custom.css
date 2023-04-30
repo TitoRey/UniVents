@@ -1,0 +1,54 @@
+.div1 {
+    background-color: #FFDAB9;
+}
+h1 {
+    font-family: 'Impact', sans-serif;
+    color: #424242;
+
+  }
+h2 {
+    font-family: 'Impact', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: #424242;
+}
+h3, h4 {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #424242;
+}
+p, li {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #424242;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  height: 50px; /* adjust the height as needed */
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    
+  }
+ 
