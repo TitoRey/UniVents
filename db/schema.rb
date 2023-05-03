@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
     t.datetime "event_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "flagged", default: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
     t.string "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.index ["event_id"], name: "index_locations_on_event_id"
   end
 

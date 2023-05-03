@@ -13,11 +13,12 @@ class EventsController < ApplicationController
         format.json { render json: EventDatatable.new(params, view_context: view_context) }
       end
     elsif params[:from].present? && params[:to].present?
-      @events.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
+      @events = @events.where("event_time between :start AND :end", start: Date.parse(params[:from]).in_time_zone, end: Date.parse(params[:to]).in_time_zone)
+      render
     elsif params[:from].present?
-      @events.where("event_time >= :foo", foo: Date.parse(params[:from]).in_time_zone)
+      @events = @events.where("event_time >= :foo", foo: Date.parse(params[:from]).in_time_zone)
     elsif params[:to].present?
-      @events.where("event_time < :foo", foo: Date.parse(params[:to]).in_time_zone)
+      @events = @events.where("event_time < :foo", foo: Date.parse(params[:to]).in_time_zone)
     end
   end
 
