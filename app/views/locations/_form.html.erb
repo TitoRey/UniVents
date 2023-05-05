@@ -23,17 +23,17 @@
 
   <div class="mb-3">
     <%= form.label :title, "Street Address (for In-Person Events)" %><br/>
-    <%= form.text_field :street_address, class: "form-control", required: true %>
+    <%= form.text_field :street_address, class: "form-control", required: false %>
   </div>
 
   <div class="mb-3">
     <%= form.label :title, "City (for In-Person Events)" %><br/>
-    <%= form.text_field :city, class: "form-control", required: true %>
+    <%= form.text_field :city, class: "form-control", required: false %>
   </div>
 
   <div class="mb-3">
     <%= form.label :title, "Zipcode (for In-Person Events)" %><br/>
-    <%= form.text_field :zipcode, class: "form-control", required: true %>
+    <%= form.text_field :zipcode, class: "form-control", required: false %>
   </div>
   
   <div class="mb-3">
@@ -42,7 +42,7 @@
   </div>
 
   <!-- Hidden Fields -->
-  <% form.hidden_field_tag :event_id, @event.id %>
+  <%= form.hidden_field :event_id, value:params[:event_id] %>
 
   <div>
     <!-- filter params before submitting the form? not currently implemented -->
