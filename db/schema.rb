@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_234321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
     t.datetime "event_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "flagged", default: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -42,7 +42,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_023700) do
     t.string "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
+    t.boolean "is_virtual"
+    t.string "url"
     t.index ["event_id"], name: "index_locations_on_event_id"
   end
 
