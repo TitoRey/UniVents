@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
+    #debugger
     @location = Location.new(location_params)
     
     respond_to do |format|
@@ -28,6 +29,6 @@ class LocationsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def location_params
-      params.fetch(:location, {})
+      params.require(:location).permit(:street_address, :city, :zipcode, :county, :city, :coordinates, :event_id, :is_virtual, :url)
     end
 end

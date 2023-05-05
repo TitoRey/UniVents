@@ -1,9 +1,23 @@
-<h1>New location</h1>
+<!-->
 
-<%= render "form", location: @location %>
 
-<br>
+<div> <!-- This should be removed, should link back to the event the user came from>
+  <%= link_to "Back to Event", events_path(@event) %>
+</div>
+<-->
 
-<div>
-  <%= link_to "Back to locations", locations_path %>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-3">
+    <%= link_to events_path do %> <!-- This should link back to the event the user came from, but it does not -->
+      <i class="bi-arrow-left-circle" style="font-size: 2rem; color: black;"></i>
+    <% end %>
+    </div>
+
+    <div class="col-md-6 form-group">
+      <h1 class="form">Set Event Location</h1><br>
+      <%= render "form", location: @location %>
+    </div>
+  </div>
 </div>

@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   # Dashboard => Contains User Information as well as Event information (hosted + signed-up for)
   def show
+    @hostedEvents = Event.where(user_id: current_user.id)
+    @eventUser = EventUser.where(user_id: current_user.id)
+    @registered_events = User.find(params[:id]).events
   end
 
   def edit
