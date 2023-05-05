@@ -54,7 +54,7 @@
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCCcEd-SxyWVywZz9nMTJBiowQh8l1RYRQ&q=<%= @event.location.full_address %>">
           </iframe>
         <% else %>
-          <%= @event.location.url %> <!-- TODO: Needs CSS -->
+          <%= @event.location.url %> <!-- TODO: Needs CSS, also with ruby rails it's not straightforward to link to an external website -->
         <% end %>
       <% else %>
         No Location Set
