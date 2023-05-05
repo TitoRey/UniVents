@@ -6,19 +6,20 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   test "valid registration" do
-    user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    assert user.valid?
-    # Need to write assertion that user.create does not throw exceptions
+    #location = Location.new(:street_address => "4400 University Drive",:zipcode=> 22030,:county=> "Fairfax",:city=>"Fairfax",:event_id => 10)
+    assert User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false).save
+    
+    # Need to write assertion that   does not throw exceptions
   end
 
   test "inv reg missing field" do
-    user = User.new()
-    user.create
-    assert_not_nil user.errors, 'no validation error for user present'
+    assert_raise (Exception) {
+      user = User.new(:password=>"ABCSDS231",:first_name=>"hello")
+  }
+    
     # no fields - should return an exception since none of the fields are filled out
   end
   test "inv reg weak password" do
-    
       user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"cry",:password_confirmation=>"ABCSDS231",:admin=>false)
       assert user.valid?
   end
@@ -32,13 +33,13 @@ class UserTest < ActiveSupport::TestCase
   end
   test "user exists" do
     user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    user.create
-    user2 = User.find(email = "ssekar+0000.gmu.edu")
+     
+    user2 = User.find(:email => "ssekar+0000.gmu.edu")
     assert user==user2
   end
   test "valid login" do
     user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    user.create
+     
     username = "ssekar+0000@gmu.edu"
     password = "ABCSDS231"
     boolean = (user.email == username) and (user.password == password)
@@ -46,7 +47,7 @@ class UserTest < ActiveSupport::TestCase
   end
   test "invalid login" do
     user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    user.create
+     
     username = "ssekar+0000@gmu.edu"
     password = "ABCSDS2323421"
     boolean = (user.email == username) and (user.password == password)
@@ -65,13 +66,13 @@ class UserTest < ActiveSupport::TestCase
   end
   test "is admin" do
     user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    user.create
+     
     assert user.is_admin == false
   end
   
   test "delete user" do
     user = User.new(:password=>"ABCSDS231",:email=>"ssekar+00000@gmu.edu",:first_name=>"hello",:last_name=>"crazy",:password_confirmation=>"ABCSDS231",:admin=>false)
-    user.create
+     
     # Need to write assertion
   end
   test "update user" do
