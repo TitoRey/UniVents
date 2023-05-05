@@ -16,10 +16,10 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should create location" do
-  #   assert_difference("Location.count") do
-  #     post locations_url, params: { location: {  } }
-  #   end
+  test "should create location" do
+    assert_difference("Location.count") do
+      post locations_url, params: { location: { event_id: @event.id, url: '', is_virtual: false, street_address: '3338 Webley Ct.', city: 'Annandale', zipcode: 22003 } }
+    end
 
-  # end
+  end
 end
