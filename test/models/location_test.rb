@@ -5,22 +5,22 @@ class LocationTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "valid location" do
-  location = Location.new(:street_address => "4400 University Drive",:zipcode=> 22030,:city=>"Fairfax",:county=> "Fairfax",:event_id => 1)
+  assert Location.new(:street_address => "4400 University Drive",:zipcode=> 22030,:city=>"Fairfax",:county=> "Fairfax",:event_id => 1).save
   # Should assert creation successful
   end
-  
+
   test "missing field" do
     assert_raise(Exception) {
-    location = Location.new(:street_address => "4400 University Drive",:zipcode=>22030,:city=>"Fairfax",:county=> "Fairfax")
-    location.create
+    Location.new(:street_address => "4400 University Drive",:zipcode=>22030,:city=>"Fairfax",:county=> "Fairfax").save
   # Missing coordinates -> Should return exception
   }
-  #end
+  end
   
   test "destroy location" do
     location = Location.new(:street_address => "4400 University Drive",:zipcode=> 22030,:city=>"Fairfax",:county=> "Fairfax",:event_id => 1)
     location.create
     location.destroy
+
   end
   
   test "string location" do
