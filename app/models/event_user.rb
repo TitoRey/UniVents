@@ -9,6 +9,6 @@ class EventUser < ApplicationRecord
   private 
 
   def host_cannot_register
-    errors.add :base, 'Host cannot register for their own event!'
+    errors.add :base, 'Host cannot register for their own event!' if event.user_id == user_id
   end
 end
