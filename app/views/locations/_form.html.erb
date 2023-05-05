@@ -1,4 +1,5 @@
 <%= form_with(model: location) do |form| %>
+  <!-- Show errors if any -->
   <% if location.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
@@ -11,7 +12,37 @@
     </div>
   <% end %>
 
+  <!-- Form Fields -->
+  <h3>Event Type</h3>
+  <!-- https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormHelper/radio_button -->
+  <div class="mb-3">
+    <%= radio_button("location", "is_virtual", false, {checked: true}) %> In-Person
+    <br>
+    <%= radio_button("location", "is_virtual", true, {checked: false}) %> Virtual
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, "Street Address (for In-Person Events)" %><br/>
+    <%= form.text_field :street_address, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, "City (for In-Person Events)" %><br/>
+    <%= form.text_field :city, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, "Zipcode (for In-Person Events)" %><br/>
+    <%= form.text_field :zipcode, class: "form-control", required: true %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :title, "URL (for Virtual Events)" %><br/>
+    <%= form.text_field :url, class: "form-control", required: false %>
+  </div>
+
   <div>
-    <%= form.submit %>
+    <!-- filter params before submitting the form? not currently implemented -->
+    <%= form.submit "Set Location", class: "btn btn-primary" %>
   </div>
 <% end %>
