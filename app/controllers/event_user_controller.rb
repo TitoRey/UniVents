@@ -13,8 +13,6 @@ class EventUserController < ApplicationController
         format.json { render json: @event_user.errors, status: :unprocessable_entity }
       end
     end
-    
-
   end
 
   def destroy
