@@ -41,6 +41,9 @@
     <%= form.text_field :url, class: "form-control", required: false %>
   </div>
 
+  <!-- Hidden Fields -->
+  <% form.hidden_field_tag :event_id, @event.id %>
+
   <div>
     <!-- filter params before submitting the form? not currently implemented -->
     <%= form.submit "Set Location", class: "btn btn-primary" %>
