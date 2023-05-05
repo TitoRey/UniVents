@@ -17,7 +17,11 @@
           <span>
             <i class="bi-geo-alt-fill me-2"></i>
             <% if @event.location.present? %>
-              <%= @event.location.full_address %>
+              <% if @event.location.is_virtual %>
+                Virtual
+              <% else %>
+                <%= @event.location.full_address %>
+              <% end %>
             <% else %>
               No Location Set
             <% end %>
@@ -32,24 +36,28 @@
     </div>
     <div class="mb-5">
     <h4>Location</h4>
-      <% if @event.location.present? %> <!-- This can be moved to it's own partial? -->
-        <iframe
-          width=100%
-          height="450"
-          style="border:0"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCCcEd-SxyWVywZz9nMTJBiowQh8l1RYRQ&q=4400+University+Dr">
-        </iframe>
-      <% else %>
-        <% if current_user.id == @event.user_id %> <!-- Show "Set Location" button if user is host-->
-          <%= link_to new_location_path(@event), class: "btn btn-outline-dark", title: "Set Event Location" do %>
+      <% if current_user.id == @event.user_id %> <!-- Show "Set Location" button if user is host-->
+          <%= link_to new_location_path(event_id: @event.id), class: "btn btn-outline-dark", title: "Set Event Location" do %>
             <i class="bi bi-pin-map-fill"> Set Event Location </i>
           <% end %>
+          <br>
+      <% end %>
+      <% if @event.location.present?%>
+        <% if !@event.location.is_virtual %>
+          <iframe
+            width=100%
+            height="450"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCCcEd-SxyWVywZz9nMTJBiowQh8l1RYRQ&q=<%= @event.location.full_address %>">
+          </iframe>
         <% else %>
-          No Location Set
+          <%= @event.location.url %> <!-- TODO: Needs CSS -->
         <% end %>
+      <% else %>
+        No Location Set
       <% end %>
     </div>
   </div>
