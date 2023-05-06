@@ -6,15 +6,45 @@ class UserTest < ActionDispatch::IntegrationTest
   end
 
   test "User can't view dashboard if not logged in" do
-    sign_out users(:userValidA)
-    get user_path(users(:userValidA))
+    userA = users(:userValidA)
+    sign_out userA
+    get user_path(userA)
     assert_response :redirect
   end
 
   test "User can't view events if not logged in" do
-    sign_out users(:userValidA)
+    userA = users(:userValidA)
+    sign_out userA
     get events_path
     assert_response :redirect
+  end
+
+  test "User can't create events if not logged in" do
+    userA = users(:userValidA)
+    sign_out userA
+    get new_event_path
+    assert_response :redirect
+  end
+
+  test "User can view dashboard if logged in" do
+    userA = users(:userValidA)
+    get user_path(userA)
+    assert_response :success
+  end
+
+  test "User can edit their information" do
+    userA = users(:userValidA)
+    post events_path, params: { event: { user_id: userA.id, event_name: 'Main Event', event_description: 'Main Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
+    assert_response :redirect
+    follow_redirect!
+    
+    eventA = Event.last
+
+    patch edit_event_path(eventA), params: { event: { user_id: userA.id, event_name: 'Sub Event', event_description: 'Sub Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
+    assert_response :redirect
+    follow_redirect!
+
+    assert_equal 'Sub Event', eventA.event_name
   end
 
   # test "invalid account" do
