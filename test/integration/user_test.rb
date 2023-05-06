@@ -32,19 +32,39 @@ class UserTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "User can edit their information" do
+  test "User can create and edit events" do
     userA = users(:userValidA)
     post events_path, params: { event: { user_id: userA.id, event_name: 'Main Event', event_description: 'Main Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
     assert_response :redirect
     follow_redirect!
-    
-    eventA = Event.last
 
-    patch edit_event_path(eventA), params: { event: { user_id: userA.id, event_name: 'Sub Event', event_description: 'Sub Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
+    eventA = Event.last
+    patch event_path(eventA), params: { event: { user_id: userA.id, event_name: 'Sub Event', event_description: 'Sub Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
     assert_response :redirect
     follow_redirect!
 
-    assert_equal 'Sub Event', eventA.event_name
+    eventA.reload
+    assert_equal 'Sub Event', Event.last.event_name
+  end
+
+  test "User can join events" do
+    userA = users(:userValidA)
+    userB = users(:userValidB)
+
+    post events_path, params: { event: { user_id: userA.id, event_name: 'Main Event', event_description: 'Main Event Description', event_start_date: Date.tomorrow(), event_start_time: Time.now }}
+    assert_response :redirect
+    follow_redirect!
+
+    eventA = Event.last
+
+    sign_out userA
+    sign_in userB
+
+    post event_user_index_url, params: { user_id: userB.id, event_user: { user_id: userB.id, event_id: eventA.id }}
+    assert_response :redirect
+    follow_redirect!
+
+    assert userB.currently_registered_to(:event=>eventA)
   end
 
   # test "invalid account" do
