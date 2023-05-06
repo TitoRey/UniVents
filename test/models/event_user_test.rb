@@ -4,38 +4,10 @@ class EventUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  test "see all signed up events" do
-    
+  test "signup" do
+    user = User.create(email: 'test@gmu.edu', password: 'Password1234!', 
+    first_name: 'Douglas', last_name: 'Patrick', active: true, admin: true)
+    event = Event.create(event_name: 'Main Event', event_description: 'Main Event Description', event_time: DateTime.now - 1.month, user_id: user.id+1)
+    assert EventUser.create(user_id: user.id, event_id: event.id)
   end
-  test "signup capacity reached" do
-    
-  end
-  test "signup past completion" do
-    
-  end
-  test "signup user not logged in" do
-    
-  end
-  test "signup user already signed up" do
-    
-  end
-  test "signup event doesn't exist" do
-    
-  end
-  test "signup event locked" do
-    
-  end
-  test "signup is creator" do
-    
-  end
-  test "signup add participant" do
-    
-  end
-  test "signup remove participant" do
-    
-  end
-  test "view signup" do
-    
-  end
-
 end

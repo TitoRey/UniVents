@@ -29,10 +29,19 @@ class EventTest < ActiveSupport::TestCase
   test "delete event" do
     
   end
-  test "admin function" do
+  test "user_signedup" do
     
   end
-  test "capacity reached" do
-    
+  test "owner_email" do
+
+  end
+  test "event_date_and_time" do
+
+  end
+  test "all users" do
+
+  end
+  test "flag" do
+
   end
 end
