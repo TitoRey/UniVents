@@ -1,85 +1,58 @@
+<body style="background-color: #ADD8E6;">
+  <div class="container dashboard">
+    <div class="row justify-content-center background rounded">
 
-<div class="container dashboard">
-  <div class="row justify-content-center">
-    <div class="account-info col-md-2 col">
-      <br>
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <br>
-      <p><strong>Email:</strong> <%= @user.email %></p>
-      <br>
-      <% if @user.is_admin? %>
-        <p><strong>Role:</strong> Admin</p>
-      <% else %>
-        <p><strong>Role:</strong> Default User</p>
-      <% end %>
-      <br>
-      <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-primary' %>
-    </div>
-    <div class="user-host-info col-md-4 col">
+
+      <div class="account-info col-md-2 col">
+        <br>
+        <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+        <br>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+        <br>
+        <% if @user.is_admin? %>
+          <p><strong>Role:</strong> Admin</p>
+        <% else %>
+          <p><strong>Role:</strong> Default User</p>
+        <% end %>
+        <br>
+        <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-primary' %>
+      </div>
+
+
+      <div class="account-info col-md-4 col">
         <h2 class="mt-5">Hosted Events</h2>      
         <% if @hostedEvents.any? %>
-          <div id="hosted-events-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <h3><%= @hostedEvents.first.event_name %></h3>
-                <p><%= @hostedEvents.first.event_description %></p>
-                <p><%= @hostedEvents.first.event_date_and_time %></p>
-              </div>
-              <% @hostedEvents.drop(1).each do |event| %>
-                <div class="carousel-item">
-                  <h3><%= event.event_name %></h3>
-                  <p><%= event.event_description %></p>
-                  <p><%= event.event_date_and_time %></p>
-                </div>
-              <% end %>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#hosted-events-carousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#hosted-events-carousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          <% @hostedEvents.each do |event| %>
+          <div class="event">
+            <h3><%= event.event_name %></h3>
+            <p><%= event.event_description %></p>
+            <p><%= event.event_date_and_time %></p>
           </div>
+        <% end %>
         <% else %>
           <p>No hosted events.</p>
         <% end %>    
-    </div>
+      </div>
 
-    <div class="user-host-info col-md-4 col">
-      <h2 class="mt-5">Events Signed Up</h2>      
-      <% if @registered_events.any? %>
-        <div id="signedup-events-carousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <h3><%= @registered_events.first.event_name %></h3>
-              <p><%= @registered_events.first.event_description %></p>
-              <p><%= @registered_events.first.event_date_and_time %></p>
-            </div>
-            <% @registered_events.drop(1).each do |event| %>
-              <div class="carousel-item">
-                <h3><%= event.event_name %></h3>
-                <p><%= event.event_description %></p>
-                <p><%= event.event_date_and_time %></p>
-              </div>
-            <% end %>
+
+
+      <div class="account-info col-md-4 col">
+        <h2 class="mt-5">Events Signed Up</h2>      
+        <% if @registered_events.any? %>
+          <% @registered_events.each do |event| %>
+          <div class="event">
+            <h3><%= event.event_name %></h3>
+            <p><%= event.event_description %></p>
+            <p><%= event.event_date_and_time %></p>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#signedup-events-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#signedup-events-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      <% else %>
-        <p>You haven't signed up to any events.</p>
-      <% end %>  
+        <% end %>
+        <% else %>
+          <p>You haven't signed up to any events.</p>
+        <% end %>  
+      </div>
+
+
+
     </div>
-
-
-
   </div>
-</div>
+</body>
