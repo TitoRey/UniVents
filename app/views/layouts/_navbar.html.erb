@@ -5,7 +5,9 @@
         <i class="bi bi-calendar4-week"></i>
       </div>
     <% end %>
-    <a class="navbar-brand" href="#">UniVents</a>
+    <%= link_to root_path do %>
+      <div class="navbar-brand">UniVents</div>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +35,7 @@
               <%= link_to 'Users', users_path, class: 'nav-link' %>
             </li><br>
           <% end %>
-          <li class="nav-item">
+          <li class="nav-item ms-5">
             <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'nav-link' %>
           </li>
         <% end %>

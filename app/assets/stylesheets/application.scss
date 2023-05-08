@@ -22,26 +22,48 @@ fieldset.inner {
 
 .flex-container {
   margin-left: 5%;
-  width: 90%;
+  margin-right: 5%;
   height: auto;
   display: flex;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .flex-box {
-  width: 250px;
-  height: 350px;
-  background: gray;
-  color: white;
-  text-align: center;
-  border-radius: 20px;
-  margin: 20px;
+  width: 340px;
+  height: 250px;
+  background: white;
+  color: black;
+  text-align: left;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  transition: all 200ms;
   text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-box:hover {
-  background-color: green;
+  z-index: 1;
+  box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+  cursor: pointer;
+}
+
+.event-card-title {
+  overflow: hidden;
+  word-break: break-word;
+  max-height: 3.6em;
+  line-height: 1.8em;
+}
+
+.event-card-description {
+  overflow: hidden;
+  word-break: break-word;
+  font-size: 16px;
 }
 
 .table {
