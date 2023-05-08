@@ -93,9 +93,11 @@
                             <span class="event-card-description">
                               <i class="bi-geo-alt-fill fs-6 me-2"></i>
                               <% if event.location.present? %>
-                                <%= event.location.full_address %>
-                              <% else %>
-                                Virtual
+                                <% unless  event.location.is_virtual %>
+                                  <%= event.location.full_address %>
+                                <% else %>
+                                  Virtual
+                                <% end %>
                               <% end %>
                             </span>
                           </div>
