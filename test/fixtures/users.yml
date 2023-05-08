@@ -10,5 +10,10 @@ userValidA:
   last_name: "crazy"
   admin: false
 
+userValidB:
+  email: "lphan@gmu.edu"
+  first_name: "Lam"
+  last_name: "Phan"
+  admin: false
 # two: {}
 # column: value

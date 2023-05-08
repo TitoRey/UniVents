@@ -4,8 +4,10 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+# eventValidA:
+#   event_name: 'Main Event'
+#   event_description: 'Main Event Description'
+#   event_time: <%= DateTime.now + 1.month %>
 #
-two: {}
+# two: {}
 # column: value
