@@ -12,8 +12,8 @@ module UniVents
     config.load_defaults 7.0
     config.assets.precompile += ['application.js']
     config.importmap.enabled = true
-
-
+    config.assets.paths << "/app/assets/videos"
+    #Rails.application.config.assets.precompile += "/app/assets/stylesheets/custom.css"
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

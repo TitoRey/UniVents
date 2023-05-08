@@ -1,91 +1,123 @@
-<% if params[:flagged].present? && current_user.is_admin? %>
-  <div class="container">
-    <table class="datatable table table-hover table-bordered cell-border compact order-column" data-dt-config="<%= {
-    scrollX: true, 
-    searching: false,
-    processing: true, 
-    responsive: true, 
-    autoWidth: false, 
-    serverSide: true, 
-    paging: false,
-    dom: 'lrt',
-    columns: [
-      { data: 'event_name'             },
-      { data: 'event_description'      },
-      { data: 'event_time'             },
-      { data: 'creator'                },
-      { data: 'sign_ups'               },
-      { data: 'show', orderable: false }
-    ],
-    ajax: { url: events_path(flagged: true) } }.to_json %>">
-      <thead>
-        <tr>
-          <th>Event Name</th>
-          <th>Description</th>
-          <th>Event Time</th>
-          <th>Creator</th>
-          <th>Sign-Ups</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-<% else %>
-  <div class="container">
-    <%= form_tag(events_url, method: :get) do %>
-      <div class="row event-header">
-        <div class="col-md-2"></div>
-        <div class="col-md-2">
-          From: <%= date_field_tag :from, class: 'form-control', min: Date.today.beginning_of_week %>
-        </div>
-        <div class="col-md-2">
-          To: <%= date_field_tag :to, class: 'form-control', min: Date.today.end_of_week %>
-        </div>
-        <div class="col-md-1">
-          <%= submit_tag 'Search', class: 'btn btn-primary' %>
-        </div>
-        <div class="col-md-1">
-          <%= link_to 'Create', new_event_path, class: 'btn btn-primary' %>
-        </div>
-        <% if current_user.is_admin? %>
-          <div class="col-md-2">
-            <%= link_to "Flagged Events", events_path(flagged: true), class: 'btn btn-secondary' %>
-          </div>
-        <% end %>
-      </div><br>
-    <% end %>
-
-    <div class="flex-container">
-      <% if @events.present? %>
-        <% @events.each do |event| %>
-          <%= link_to event_path(event) do %>
-            <div class="flex-box">
-              <br>
-              <%= event.event_time.strftime("%B %d %Y (%I:%M %p)") %>
-              <br><br>
-              Open Slots: TBA
-              <br><br>
-
-              <h5><%= event.event_name.truncate(25) %></h5>
-              <br><br>
-              <%= event.event_description.truncate(200) %>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-      <% end %>
+<body style="background-color: #ADD8E6;">
+  <% if params[:flagged].present? && current_user.is_admin? %>
+    <div class="container">
+      <table class="datatable table table-hover table-bordered cell-border compact order-column" data-dt-config="<%= {
+      scrollX: true, 
+      searching: false,
+      processing: true, 
+      responsive: true, 
+      autoWidth: false, 
+      serverSide: true, 
+      paging: false,
+      dom: 'lrt',
+      columns: [
+        { data: 'event_name'             },
+        { data: 'event_description'      },
+        { data: 'event_time'             },
+        { data: 'creator'                },
+        { data: 'sign_ups'               },
+        { data: 'show', orderable: false },
+        { data: 'delete', orderable: false },
+      ],
+      ajax: { url: events_path(flagged: true) } }.to_json %>">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Description</th>
+            <th>Event Time</th>
+            <th>Creator</th>
+            <th>Sign-Ups</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
-  </div>
-<% end %>
-
-
-
-
-
-
-
-
-
-
+  <% else %>
+    <div class="container">
+      <div class="row">
+        <h1 class="text-center my-3" style="font-size:50px">All Events</h1>
+        <%= form_with(url: events_url, method: :get) do |form| %>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <%= form.label :from %>
+              <%= form.date_field :from, class: "form-control", min: Date.today.beginning_of_week %>
+            </div>
+            <div class="col-md-2">
+              <%= form.label :to %>
+              <%= form.date_field :to, class: "form-control", min: Date.today.beginning_of_week %>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1 d-flex align-items-end">
+              <%= form.submit "Search", class: "btn btn-primary" %>
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+              <%= link_to "Create", new_event_path, class: "btn btn-success" %>
+            </div>
+            <% if current_user.is_admin? %>
+              <div class="col-md-2 d-flex align-items-end">
+                <%= link_to "Flagged Events", events_path(flagged: true), class: "btn btn-warning" %>
+              </div>
+            <% end %>
+            <div class="col-md-1"></div>
+          </div><br>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="flex-container">
+          <% if @events.present? %>
+            <% @events.each do |event| %>
+              <div class="mx-2 mb-3 p-2">
+                <%= link_to event_path(event) do %>
+                  <div class="flex-box">
+                    <div class="row event-card-title mb-3">
+                      <h4 class="text-center"><%= event.event_name.truncate(50) %></h4>
+                    </div>
+                    <div class="row">
+                      <ul class="ms-2" style="list-style: none">
+                        <% if event.event_time? %>
+                        <li>
+                          <div class="mb-2">
+                            <span class="event-card-description">
+                              <i class="bi-clock-fill fs-6 me-2"></i>
+                              <%= event.event_time.strftime("%B %d %Y (%I:%M %p)") %>
+                            </span>
+                          </div>
+                        </li>
+                        <% end %>
+                        <li>
+                          <div class="mb-2">
+                            <span class="event-card-description">
+                              <i class="bi-geo-alt-fill fs-6 me-2"></i>
+                              <% if event.location.present? %>
+                                <% unless  event.location.is_virtual %>
+                                  <%= event.location.full_address %>
+                                <% else %>
+                                  Virtual
+                                <% end %>
+                              <% end %>
+                            </span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="row" style="flex-grow: 1;">
+                      <span class="event-card-description d-flex align-items-end justify-content-end">
+                        <i class="bi-people-fill fs-6 me-2"></i>
+                        <%= event.users_signed_up %>
+                      </span>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</body>

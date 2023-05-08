@@ -40,7 +40,7 @@
           <%= link_to new_location_path(event_id: @event.id), class: "btn btn-outline-dark", title: "Set Event Location" do %>
             <i class="bi bi-pin-map-fill"> Set Event Location </i>
           <% end %>
-          <br>
+          <br><br>
       <% end %>
       <% if @event.location.present?%>
         <% if !@event.location.is_virtual %>
@@ -65,7 +65,7 @@
   <div class="col-md-4">
     <div class="d-grid col-8 mx-auto py-2">
       <!-- Event Registration-->
-      <% if current_user.id != @event.user_id %>
+      <% if (current_user.id != @event.user_id) %>
         <% if current_user.currently_registered_to(event: @event) %>
           <%= link_to 'Deregister', event_user_url(user_id: current_user.id, id: current_user.grab_registration_for_event(event: @event)),  data: { "turbo-method": :delete }, class: 'btn btn-success btn-lg'%>
         <% else %>
@@ -126,15 +126,14 @@
               </div>
             </div>
           </span>
+          
         </div>
       <% else %>
         <!-- Event Edit -->
         <div class="mb-5">
           <span class="d-flex justify-content-end">
-            <% if @event.user %>
-              <%= link_to edit_event_path(@event), class: "btn btn-outline-dark", title: "Edit this event" do %>
-                <i class="bi bi-pencil-square"></i>
-              <% end %>
+            <%= link_to edit_event_path(@event), class: "btn btn-outline-dark", title: "Edit this event" do %>
+              <i class="bi bi-pencil-square"></i>
             <% end %>
           </span>
         </div>
@@ -144,7 +143,7 @@
     <div class="card shadow p-3 mb-5 bg-body-tertiary">
       <div class="card-body">
         <h5 class="card-title">Host:</h5>
-        <span>
+        <span style="font-size: 18px;">
           <%= @event.user.full_name %>
         </span>
       </div>

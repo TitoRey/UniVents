@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :setup_user, only: [:show, :dashboard, :edit, :update]
+  before_action :setup_user, only: [:show, :dashboard, :edit, :update, :destroy]
   # before_action :authenticate_admin, only: [:index]
   before_action :verify_author_or_admin, only: [:show]
 
@@ -29,6 +29,13 @@ class UsersController < ApplicationController
         format.html { render action: 'edit'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Account has been successfully deleted!'}
     end
   end
 

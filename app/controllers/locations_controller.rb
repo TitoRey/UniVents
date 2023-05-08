@@ -9,12 +9,9 @@ class LocationsController < ApplicationController
   # POST /locations or /locations.json
   def create
     @location = Location.new(location_params)
-    
     respond_to do |format|
       if @location.save
-        Location.where.not(id: @location.id).where(event_id: @location.event_id).destroy_all
-
-        format.html { redirect_to event_url(@location.event_id), notice: "Location has been created for the event" }
+        format.html { redirect_to event_path(@location.event), notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new, status: :unprocessable_entity }
