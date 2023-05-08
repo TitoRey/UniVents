@@ -21,12 +21,10 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
-    #debugger
     @location = Location.new(location_params)
-
     respond_to do |format|
       if @location.save
-        format.html { redirect_to location_url(@location), notice: "Location was successfully created." }
+        format.html { redirect_to event_path(@location.event), notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new, status: :unprocessable_entity }

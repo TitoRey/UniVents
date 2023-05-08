@@ -15,7 +15,8 @@ class EventDatatable < AjaxDatatablesRails::ActiveRecord
       event_time:         { source: 'Event.event_time', cond: :like, orderable: true },
       creator:            { source: 'Event.creator', cond: :like, orderable: false },
       sign_ups:           { source: 'Event.sign_ups', orderable: false  },
-      show:               { source: 'Event.id' }
+      show:               { source: 'Event.id' },
+      delete:             { source: 'Event.id '}
     }
   end
 
@@ -28,6 +29,7 @@ class EventDatatable < AjaxDatatablesRails::ActiveRecord
         creator:           record.user.full_name,
         sign_ups:     0,
         show:              show(record),
+        delete:              delete(record),
         DT_RowId:          record.id
       }
     end
@@ -35,6 +37,10 @@ class EventDatatable < AjaxDatatablesRails::ActiveRecord
 
   def show(event)
     link_to('Show', event_path(event))
+  end
+
+  def delete(event)
+    link_to('Delete', event_path(event),  data: { "turbo-method": :delete, confirm: 'Are you sure?'})
   end
 
   def get_raw_records

@@ -16,6 +16,9 @@
         <% end %>
         <br>
         <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-primary' %>
+        <br><br>
+        <%= link_to 'Delete Account', user_path(@user),  data: { "turbo-method": :delete }, class: 'btn btn-danger' %>
+
       </div>
 
 
