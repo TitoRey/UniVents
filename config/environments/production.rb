@@ -1,6 +1,5 @@
 require "active_support/core_ext/integer/time"
 
-Rails.application.default_url_options = { host: 'www.univents-app.onrender.com', protocol: 'http ' }
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -41,8 +40,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  host = 'univents-app.onrender.com'
-  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'univents-app.onrender.com' }
 
 
   # Mount Action Cable outside main process or domain.
