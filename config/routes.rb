@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   
   resources :events
-  resources :locations
+  resources :locations, only: [ :new, :create ]
   resources :users
   resources :event_user, only: [ :create, :destroy ] 
 

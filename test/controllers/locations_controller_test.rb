@@ -2,12 +2,13 @@ require "test_helper"
 
 class LocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @location = locations(:one)
-  end
-
-  test "should get index" do
-    get locations_url
-    assert_response :success
+    User.destroy_all
+    Event.destroy_all
+    @user = User.create(email: 'test@gmu.edu', password: 'Password1234!', 
+                        first_name: 'Douglas', last_name: 'Patrick', active: true, admin: true)
+    @event = Event.create(event_name: 'Main Event', event_description: 'Main Event Description',
+                          event_time: DateTime.now + 1.month, user_id: @user.id )
+    post user_session_url, params: { user: { email: @user.email, password: @user.password, commit: 'Log in' } }
   end
 
   test "should get new" do
@@ -17,32 +18,8 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create location" do
     assert_difference("Location.count") do
-      post locations_url, params: { location: {  } }
+      post locations_url, params: { location: { event_id: @event.id, url: '', is_virtual: false, street_address: '3338 Webley Ct.', city: 'Annandale', zipcode: 22003 } }
     end
 
-    assert_redirected_to location_url(Location.last)
-  end
-
-  test "should show location" do
-    get location_url(@location)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_location_url(@location)
-    assert_response :success
-  end
-
-  test "should update location" do
-    patch location_url(@location), params: { location: {  } }
-    assert_redirected_to location_url(@location)
-  end
-
-  test "should destroy location" do
-    assert_difference("Location.count", -1) do
-      delete location_url(@location)
-    end
-
-    assert_redirected_to locations_url
   end
 end
